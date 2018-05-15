@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:cache="http//www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+			http://www.springframework.org/schema/beans
+		    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/jee 
+			http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+			http://www.springframework.org/schema/cache
+			http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+	
+	
+	<!-- 事物管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- spring 注解事物配置 -->
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"/>
+	
+	
+	<!-- spring 声明式事物配置 start -->
+	<tx:advice id="advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" isolation="DEFAULT" read-only="false" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="update*" isolation="DEFAULT" read-only="false" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="delete*" isolation="DEFAULT" read-only="false" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="exec*" isolation="DEFAULT" read-only="false" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="create*" isolation="DEFAULT" read-only="false" propagation="REQUIRED" rollback-for="Exception"/>
+			<tx:method name="auto*" isolation="DEFAULT" read-only="false" propagation="REQUIRES_NEW" rollback-for="Exception"/>
+			<tx:method name="get*" isolation="DEFAULT" read-only="true" propagation="SUPPORTS" />
+			<tx:method name="*" isolation="DEFAULT"   read-only="true"  propagation="SUPPORTS" />  
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* com.faceghost.app.service..*.*(..))" id="pointCut"/>
+		<aop:advisor advice-ref="advice" pointcut-ref="pointCut"/>
+	</aop:config>
+	<!-- spring 声明式事物配置 end -->
+	
+</beans>

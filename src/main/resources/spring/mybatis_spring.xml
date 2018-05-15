@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:cache="http//www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+			http://www.springframework.org/schema/beans
+		    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/jee 
+			http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+			http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+			http://www.springframework.org/schema/cache
+			http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
+			
+	
+	 <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+        destroy-method="close" 
+        p:driverClass="${jdbc.driverClassName}"
+        p:jdbcUrl="${jdbc.url}" 
+        p:user="${jdbc.username}" 
+        p:password="${jdbc.password}"
+        p:testConnectionOnCheckout="${jdbc.c3p0.testConnectionOnCheckout}"
+        p:testConnectionOnCheckin="${jdbc.c3p0.testConnectionOnCheckin}"
+        p:idleConnectionTestPeriod="${jdbc.c3p0.idleConnectionTestPeriod}"
+        p:initialPoolSize="${jdbc.c3p0.initialPoolSize}" 
+        p:minPoolSize="${jdbc.c3p0.minPoolSize}"
+        p:maxPoolSize="${jdbc.c3p0.maxPoolSize}" 
+        p:maxIdleTime="${jdbc.c3p0.maxIdleTime}" />
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis_cfg.xml" />
+		<property name="mapperLocations" value="classpath:com/faceghost/app/dao/mapper/**/*.xml"/>
+		<property name="typeAliasesPackage" value="com.faceghost.app.model"/>
+	</bean>
+	
+	<!-- mybatis SqlTemplate -->
+	<bean id="sqlTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">
+	 	<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
+
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.faceghost.app.dao" />  
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>  
+    </bean>  
+</beans>
