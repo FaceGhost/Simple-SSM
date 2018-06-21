@@ -5,15 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.faceghost.app.dao.TestMapper;
+import com.faceghost.app.dao.TestDao;
 import com.faceghost.app.model.Test;
 import com.faceghost.app.vo.TestVo;
 
 @Service
 public class TestService {
 
+	/**
+	 * ns
+	 */
+	private static final String ns = "com.faceghost.app.model.Test.";
+	
+	
 	@Autowired
-	private TestMapper testMapper;
+	private TestDao testDao;
 
 	/**
 	 * 保存
@@ -22,7 +28,7 @@ public class TestService {
 	 * @throws Exception
 	 */
 	public Test saveBean(Test bean) throws Exception {
-		testMapper.insert(bean);
+		testDao.save(ns, bean);
 		return bean;
 	}
 	
@@ -32,7 +38,7 @@ public class TestService {
 	 * @throws Exception
 	 */
 	public void deleteData(Integer id) throws Exception {
-		testMapper.deleteByPrimaryKey(id);
+		testDao.deleteByPrimaryKey(ns,id);
 	}
 	
 	/**
@@ -44,7 +50,7 @@ public class TestService {
 		/**
 		 * 其他操作
 		 */
-		return testMapper.getTestPageData(searchVo);
+		return testDao.getList(ns, "getTestPageData", searchVo);
 	}
 
 	/**
@@ -53,7 +59,7 @@ public class TestService {
 	 * @return
 	 */
 	public Test getBeanById(Integer id) {
-		return testMapper.selectByPrimaryKey(id);
+		return testDao.getOne(ns, id);
 	}
 	
 	/**
@@ -63,6 +69,6 @@ public class TestService {
 	 * @throws Exception
 	 */
 	public int updateBean(Test bean) throws Exception {
-		return testMapper.updateByPrimaryKey(bean);
+		return testDao.updateByPrimaryKeySelective(ns, bean);
 	}
 }

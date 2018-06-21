@@ -2,6 +2,9 @@ package com.faceghost.app.vo;
 
 import java.io.Serializable;
 
+/**
+ * @author faceghost.com/profile/java_world
+ */
 public class TestVo implements Serializable{
 
 	private String pageNum;					//页码
