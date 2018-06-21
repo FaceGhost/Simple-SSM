@@ -13,34 +13,32 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.faceghost.app.dao;
+package com.faceghost.app.utils;
 
-import java.util.List;
-
-import com.faceghost.app.model.Test;
-import com.faceghost.app.vo.TestVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.stereotype.Component;
 
 /**
- * @author faceghost.com/profile/java_world
+ * ehcache 缓存工具类
+ * 
+ * @author faceghost.com/profile/java_world 
+ *
  */
-public interface TestMapper {
+@Component
+public class EhCacheUtil {
+
+	@Autowired()
+	private EhCacheCacheManager ehCacheCacheManager;
 	
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Test record);
-
-    int insertSelective(Test record);
-
-    Test selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Test record);
-
-    int updateByPrimaryKey(Test record);
-
-     
-    //-- above auto gen
-    
-    List<TestVo> getTestPageData(TestVo searchVo);
-    
-    
+	/**
+	 * classpath 下 ehcache.xml 
+	 */
+	private static final String defautCache = "appDefault";
+	
+	public Cache getDefault() {
+		return  ehCacheCacheManager.getCache(defautCache);
+	}
+	
 }

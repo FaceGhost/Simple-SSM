@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ehcache.xsd"
+         updateCheck="true" monitoring="autodetect"
+         dynamicConfig="true">
+
+	<!-- 用户主目录/appEhCacheDir  -->
+    <diskStore path="user.home/appEhCacheDir"/>
+    
+    <!-- 默认缓存 
+    
+                      缓存中的最大数目
+    	硬盘最大缓存个数 ,0不限制
+    	对象是否永久有效，一但设置了，timeout将不起作用
+    	是否保存到磁盘，当系统当机时
+    	缓存区大小
+    	先进先出
+    	是否缓存虚拟机重启期数据,保证缓存在重启后依然有效
+    -->
+     <cache name="appDefault"
+           maxEntriesLocalHeap="1024"  	
+           maxEntriesLocalDisk="0" 			
+           eternal="true"					
+           overflowToDisk="true"			
+           diskSpoolBufferSizeMB="20"		
+           memoryStoreEvictionPolicy="FIFO"	
+           diskPersistent="true"			
+            />
+            
+    
+</ehcache>

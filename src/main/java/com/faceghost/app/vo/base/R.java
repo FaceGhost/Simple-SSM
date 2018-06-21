@@ -13,34 +13,31 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.faceghost.app.dao;
+package com.faceghost.app.vo.base;
 
-import java.util.List;
+import java.io.Serializable;
 
-import com.faceghost.app.model.Test;
-import com.faceghost.app.vo.TestVo;
 
 /**
- * @author faceghost.com/profile/java_world
+ * @author faceghost.com/profile/java_world 
  */
-public interface TestMapper {
+public class R  implements Serializable{
+
+	private boolean success;
+	private String msg;
 	
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Test record);
-
-    int insertSelective(Test record);
-
-    Test selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Test record);
-
-    int updateByPrimaryKey(Test record);
-
-     
-    //-- above auto gen
-    
-    List<TestVo> getTestPageData(TestVo searchVo);
-    
-    
+	public boolean isSuccess() {
+		return success;
+	}
+	public void setSuccess(boolean success) {
+		this.success = success;
+	}
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	
+	
 }

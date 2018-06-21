@@ -12,7 +12,7 @@
     <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/app_test" driverClass="com.mysql.jdbc.Driver" userId="root" password="root" />
    
    <!-- 生成模型的包名和位置 --> 
-    <javaModelGenerator targetPackage="com.faceghost.app.model" targetProject="app" >
+    <javaModelGenerator targetPackage="com.faceghost.app.model" targetProject="Simple-SSM/src/main/test" >
     	 <!-- 是否在当前路径下新加一层schema,eg：false路径com.xx.model， true:com.xx.model.[schemaName] -->  
         <property name="enableSubPackages" value="false"/>  
         <!-- 是否针对string类型的字段在set的时候进行trim调用 -->  
@@ -20,13 +20,13 @@
     </javaModelGenerator>
     
      <!-- 生成的映射文件报名和位置 --> 
-    <sqlMapGenerator targetPackage="com.faceghost.app.dao.mapper"  targetProject="app"  >
+    <sqlMapGenerator targetPackage="com.faceghost.app.dao.mapper"  targetProject="Simple-SSM/src/main/test"  >
          <!-- 是否在当前路径下新加一层schema,eg：false路径com.xx.model.mapper， true:com.xx.model.mapper.[schemaName] -->  
         <property name="enableSubPackages" value="false" />  
        </sqlMapGenerator>
        
      <!-- 生成DAO的包名和位置 --> 
-    <javaClientGenerator targetPackage="com.faceghost.app.dao"  targetProject="app" type="XMLMAPPER" >
+    <javaClientGenerator targetPackage="com.faceghost.app.dao"  targetProject="Simple-SSM/src/main/test" type="XMLMAPPER" >
          <!-- 是否在当前路径下新加一层schema,eg：false路径com.xx.dao， true:com.xx.dao.[schemaName] -->  
          <property name="enableSubPackages" value="false" />  
     </javaClientGenerator>

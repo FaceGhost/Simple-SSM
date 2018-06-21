@@ -42,5 +42,7 @@
 	<!-- spring mybatis -->
 	<import resource="spring/mybatis_spring.xml" />
 	
+	<!-- spring ehcache -->
+	<import resource="spring/cache_spring.xml" />
 	
 </beans>
