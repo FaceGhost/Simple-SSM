@@ -3,6 +3,7 @@
 
 起因来源于搭建ssm系列教程，为此整理一个最简单CURD的全套源码，高手请勿喷，仅供参考学习，想学习的同学的可以参考下列文章
 
+Master分支含有基于SqlSessionTemplate的baseDao, 如果不习惯使用，可切换分支到V1.0.0 
 
 - [教你一步步搭建ssm框架，第一步实现springmvc下的页面跳转 - 2018](https://faceghost.com/article/664531 "教你一步步搭建ssm框架，第一步实现springmvc下的页面跳转 - 2018")
 
