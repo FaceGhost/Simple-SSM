@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.faceghost.app.annotation.ServiceErrorAnnotation;
 import com.faceghost.app.dao.TestDao;
 import com.faceghost.app.model.Test;
 import com.faceghost.app.vo.TestVo;
@@ -37,6 +38,7 @@ public class TestService {
 	 * @param id
 	 * @throws Exception
 	 */
+	@ServiceErrorAnnotation(desc="根据ID删除Test",isSendEmail=true,sendTo="test@test.com",sendCc="test1@test.com;test2@test.com")
 	public void deleteData(Integer id) throws Exception {
 		testDao.deleteByPrimaryKey(ns,id);
 	}

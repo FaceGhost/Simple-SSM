@@ -26,6 +26,11 @@
 		<listener>
 			<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 		</listener>
+		
+		 <!--放在spring init 之后 -->
+	    <listener>
+	        <listener-class>com.faceghost.app.interceptor.WebAppContextInterceptor</listener-class>
+	    </listener>
 
 	   <!-- 设置编码 -->
 		<filter>
