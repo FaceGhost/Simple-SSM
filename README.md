@@ -29,32 +29,19 @@
 - 数据库：mysql
 
 
-### 数据库配置文件位置
-
-https://github.com/FaceGhost/Simple-SSM/blob/master/src/main/resources/res.properties
-
-
-### 数据库表及初始数据位置
-
-https://github.com/FaceGhost/Simple-SSM/tree/master/src/main/resources/db
-
-
 ### 启动
 
 Simple-SSM 项目右键->Debug  As  -> Maven build ...  
 
 Goals ： tomcat7:run 
 
-
  
 ### 浏览器访问
 
 http://localhost:8080/Simple-SSM/test
 
-![image](https://github.com/FaceGhost/Simple-SSM/blob/master/preview_01.png)
-
 
 #### 关注见鬼网微信公众号，获取有趣文章
 
-![image](https://github.com/FaceGhost/Simple-SSM/blob/master/faceghost_qc.jpg)
+
 
